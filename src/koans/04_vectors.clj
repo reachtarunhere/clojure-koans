@@ -3,31 +3,38 @@
 
 (meditations
   "You can use vectors in clojure as array-like structures"
-  (= __ (count [42]))
+  (= 1 (count [42]))
 
   "You can create a vector from a list"
-  (= __ (vec '(1)))
+  (= [1] (vec '(1)))
+  ;; also from maps in pair forms
+  ;; also from sets
+  ;; vec is used for type casting
 
   "Or from some elements"
-  (= __ (vector nil nil))
+  (= [nil nil] (vector nil nil))
+  ;; vector is used for creation from args
 
   "But you can populate it with any number of elements at once"
-  (= [1 __] (vec '(1 2)))
+  (= [1 2] (vec '(1 2)))
 
   "Conjoining to a vector is different than to a list"
-  (= __ (conj [111 222] 333))
+  (= [111 222 333] (conj [111 222] 333))
+  ;; unlike lists here we apped instead of prepend
 
   "You can get the first element of a vector like so"
-  (= __ (first [:peanut :butter :and :jelly]))
+  (= :peanut (first [:peanut :butter :and :jelly]))
 
   "And the last in a similar fashion"
-  (= __ (last [:peanut :butter :and :jelly]))
+  (= :jelly (last [:peanut :butter :and :jelly]))
 
   "Or any index if you wish"
-  (= __ (nth [:peanut :butter :and :jelly] 3))
-
+  (= :jelly (nth [:peanut :butter :and :jelly] 3))
+  ;; zero indexing
   "You can also slice a vector"
-  (= __ (subvec [:peanut :butter :and :jelly] 1 3))
-
+  (= [:butter :and] (subvec [:peanut :butter :and :jelly] 1 3))
+  ;; like python lists second arg is not included
   "Equality with collections is in terms of values"
-  (= (list 1 2 3) (vector 1 2 __)))
+  (= (list 1 2 3) (vector 1 2 3)))
+  ;; not with sets
+  ;; maybe saying order collections is better here
